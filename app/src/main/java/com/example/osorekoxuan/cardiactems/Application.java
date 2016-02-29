@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.parse.Parse;
+import com.parse.ParseInstallation;
 
 /**
  * Created by osorekoxuan on 16/2/17.
@@ -33,6 +34,7 @@ public class Application extends android.app.Application {
         super.onCreate();
         Parse.enableLocalDatastore(this);
         Parse.initialize(this);
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         configHelper = new ConfigHelper();
         configHelper.fetchConfigIfNeeded();

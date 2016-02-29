@@ -212,7 +212,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_profile){
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_map){
+        } else if (id == R.id.nav_emergency){
+            Intent intent = new Intent(MainActivity.this, EventListActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -242,6 +244,9 @@ public class MainActivity extends AppCompatActivity
 
         } else {
             // show the signup or login screen
+            MenuItem emergencyItem = menuNav.findItem(R.id.nav_emergency);
+            emergencyItem.setVisible(false);
+
             MenuItem profileItem = menuNav.findItem(R.id.nav_profile);
             profileItem.setVisible(false);
 
@@ -344,7 +349,7 @@ public class MainActivity extends AppCompatActivity
         // 2
         final ParseGeoPoint myPoint = geoPointFromLocation(myLoc);
         // 3
-        ParseQuery<ParseObject> mapQuery = ParseQuery.getQuery("AED_DATA");;
+        ParseQuery<ParseObject> mapQuery = ParseQuery.getQuery("AED_DATA");
         // 4
         mapQuery.orderByDescending("createdAt");
         mapQuery.setLimit(30);
